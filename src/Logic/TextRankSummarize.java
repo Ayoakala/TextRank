@@ -10,6 +10,8 @@ import java.util.regex.Pattern;
 
 import opennlp.tools.sentdetect.SentenceModel;
 import opennlp.tools.util.InvalidFormatException;
+import opennlp.tools.postag.POSModel;
+import opennlp.tools.postag.POSTaggerME;
 import opennlp.tools.sentdetect.SentenceDetector;
 import opennlp.tools.sentdetect.SentenceDetectorME;
 
@@ -20,10 +22,8 @@ public class TextRankSummarize {
 	private List<String> words = new ArrayList<String>();
 	private final String SENT = "en-sent.bin";
 	private final String TAGGER = "en-pos-maxent.bin";
-	// private final String TOKEN = "en-token.bin";
 	private HashMap<String, Integer> wordFreq;
-	// private final String PATH = "/Users/KiitanAkala/Desktop/Computer Science"
-	// + "/Workspace/CMSC132/TextRank/src/Logic/Untitled";
+	
 
 	private String sample = "Pierre Vinken Vinken Vinken Vinken, 61 years old,"
 			+ " will join the board as a nonexecutive director Nov. 29. Mr."
@@ -35,11 +35,22 @@ public class TextRankSummarize {
 	// Sentence detector syntax gotten from
 	// https://amalgjose.com/2013/05/09/simple-sentence-detector-using-opennlp/
 	public TextRankSummarize() throws IOException {
+		
 		this.sentences = splitSentences(sample);
 		this.words = getAllWordsList(sample);
 		this.wordFreq = new HashMap<String, Integer>();
 		wordFreq = putAllWordsandCount(words);
-
+		
+		
+		InputStream modelIn = null;
+		modelIn = getClass().getResourceAsStream(TAGGER);
+		final POSModel posModel = new POSModel(modelIn);
+		modelIn.close();
+		 
+		POSTaggerME posTagger = new POSTaggerME(posModel);
+		for (int x= 0 ; x<1; x++){
+			System.out.println(posTagger.tag(sentences[x]));
+		}
 	}
 
 	public HashMap<String, Integer> putAllWordsandCount(List<String> wordList) {
