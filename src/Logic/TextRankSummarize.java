@@ -127,6 +127,7 @@ public class TextRankSummarize {
 	public List<String> getDistinctWordList(String fileName){
 		 
         FileInputStream fis = null;
+        
         DataInputStream dis = null;
         BufferedReader br = null;
         List<String> wordList = new ArrayList<String>();
