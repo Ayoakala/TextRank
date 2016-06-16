@@ -50,6 +50,7 @@ public class TextRankSummarize {
 		POSTaggerME posTagger = new POSTaggerME(posModel);
 		for (int x= 0 ; x<1; x++){
 			System.out.println(posTagger.tag(sentences[x]));
+			
 		}
 	}
 
