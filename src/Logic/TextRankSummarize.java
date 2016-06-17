@@ -46,7 +46,7 @@ public class TextRankSummarize {
 		modelIn = getClass().getResourceAsStream(TAGGER);
 		final POSModel posModel = new POSModel(modelIn);
 		modelIn.close();
-		 
+		 // this tags all the words in the text
 		POSTaggerME posTagger = new POSTaggerME(posModel);
 		for (int x= 0 ; x<1; x++){
 			System.out.println(posTagger.tag(sentences[x]));
