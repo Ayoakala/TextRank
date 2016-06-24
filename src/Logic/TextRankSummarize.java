@@ -49,7 +49,7 @@ public class TextRankSummarize {
 		 // this tags all the words in the text
 		POSTaggerME posTagger = new POSTaggerME(posModel);
 		for (int x= 0 ; x<1; x++){
-			System.out.println(posTagger.tag(sentences[x]));
+			System.out.println(posTagger.tag(sentences[x]).trim());
 			
 		}
 	}
