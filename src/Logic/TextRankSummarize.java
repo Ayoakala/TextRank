@@ -42,7 +42,8 @@ public class TextRankSummarize {
 		wordFreq = putAllWordsandCount(words);
 		
 		
-		InputStream modelIn = null;
+		InputStream modelIn ;
+		modelIn = null;
 		modelIn = getClass().getResourceAsStream(TAGGER);
 		final POSModel posModel = new POSModel(modelIn);
 		modelIn.close();
